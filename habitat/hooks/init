@@ -1,14 +1,14 @@
 # Move directories that ship in the package into place
-Copy-Item "{{pkgPathFor "winhab/tomcat8"}}\tc" "{{pkg_svc_var_path}}"
+Copy-Item "{{pkgPathFor "winhab/tomcat8"}}\tc" "{{pkg_svc_var_path}}/"
 
-Copy-Item "{{pkg_path}}\*.war" "{{pkg_svc_var_path}}\tc\webapps"
+Copy-Item "{{pkg_path}}/*.war" "{{pkg_svc_var_path}}/tc/webapps"
 
 # Following lines are to copy project tomcat configs to run time tomcat8 directory
-Get-ChildItem "{{pkg_svc_config_path}}" |
+Get-ChildItem "{{pkg.svc_config_path}}" |
 Foreach-Object {
     $file = $_.Name -replace "_","/"
-    Write-Host "Linking: " "{{pkg_svc_var_path}}/tc/$file" to $_.FullName
-    New-Item -Force -ItemType SymbolicLink -Path "{{pkg_svc_config_path}}/$file" -Value $_.FullName
+    Write-Host "Linking: " {{pkg_svc_var_path}}/tc/$file to $_.FullName
+    New-Item -Force -ItemType SymbolicLink -Path {{pkg_svc_config_path}}/$file -Value $_.FullName -verbose
 }
 
 {{#if bind.database ~}}

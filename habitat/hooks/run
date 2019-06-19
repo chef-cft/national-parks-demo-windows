@@ -8,10 +8,11 @@ if ( Test-path -Path "{{pkgPathFor "core/corretto8"}}" ) { $env:JRE_HOME="{{pkgP
 elseif ( Test-path -Path "{{pkgPathFor "core/corretto11"}}" ) { $env:JRE_HOME="{{pkgPathFor "core/corretto11"}}\jre" }
 else { "JDK Not present. Please verify dependencies." }
 
+$env:TOMCAT_HOME="{{pkgPathFor "winhab/tomcat8"}}"
 $env:CATALINA_HOME="{{pkgPathFor "winhab/tomcat8"}}\tc"
 $env:CATALINA_OPTS="{{cfg.server.catalina-opts}}"
 
-Copy-Item "{{pkg_path}}\*.war" "{{pkgPathFor "winhab/tomcat8"}}\tc\webapps"
+Copy-Item "{{pkg.path}}\*.war" "{{pkgPathFor "winhab/tomcat8"}}\tc\webapps" -verbose
 
 
 Start-Process -FilePath "{{pkgPathFor "winhab/tomcat8"}}\tc\bin\catalina.bat" -ArgumentList "run" -Wait -NoNewWindow
