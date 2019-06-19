@@ -16,13 +16,12 @@ function Invoke-Prepare {
   # $env:MAVEN_HOME = "$(hab pkg path winhab/maven)"
 }
 function Invoke-Build {
-  Copy-Item "$PLAN_CONTEXT/../" "$HAB_CACHE_SRC_PATH/$pkg_dirname" -Recurse -Force -Verbose
-  cd "$HAB_CACHE_SRC_PATH\${pkg_dirname}\$pkg_name"
+  Copy-Item "$PLAN_CONTEXT/../" "$HAB_CACHE_SRC_PATH/$pkg_dirname\" -Recurse -Force -Verbose
+  cd "$HAB_CACHE_SRC_PATH\${pkg_dirname}\$pkg_name\"
   mvn package
 }
 
 function Invoke-Install{
-  New-Item -ItemType Directory -Path "${pkg_prefix}/tc"
-  Copy-Item "$HAB_CACHE_SRC_PATH\$pkg_dirname\$pkg_name\target\$pkg_name.war" "$pkg_prefix\tc" -verbose
-  Copy-Item "$HAB_CACHE_SRC_PATH\$pkg_dirname\$pkg_name\data\national-parks.json" "$pkg_prefix\tc" -verbose
+  Copy-Item "$HAB_CACHE_SRC_PATH\$pkg_dirname\$pkg_name\target\$pkg_name.war" "${Prefix}" -verbose
+  Copy-Item "$HAB_CACHE_SRC_PATH\$pkg_dirname\$pkg_name\data\national-parks.json" "${PREFIX}" -verbose
 }
