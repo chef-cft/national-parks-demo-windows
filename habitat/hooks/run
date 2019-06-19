@@ -1,0 +1,17 @@
+{{#if bind.database ~}}
+ $env:CATALINA_OPTS="-DMONGODB_SERVICE_HOST={{bind.database.first.sys.ip}}
+-DMONGODB_SERVICE_PORT={{bind.database.first.cfg.port}}
+-DMONGODB_DATABASE={{cfg.mongodb_database}}"
+{{/if ~}}
+
+if ( Test-path -Path "{{pkgPathFor "core/corretto8"}}" ) { $env:JRE_HOME="{{pkgPathFor "core/corretto8"}}\jre" }
+elseif ( Test-path -Path "{{pkgPathFor "core/corretto11"}}" ) { $env:JRE_HOME="{{pkgPathFor "core/corretto11"}}\jre" }
+else { "JDK Not present. Please verify dependencies." }
+
+$env:CATALINA_HOME="{{pkgPathFor "winhab/tomcat8"}}\tc"
+$env:CATALINA_OPTS="{{cfg.server.catalina-opts}}"
+
+Copy-Item "{{pkg_path}}\*.war" "{{pkgPathFor "winhab/tomcat8"}}\tc\webapps"
+
+
+Start-Process -FilePath "{{pkgPathFor "winhab/tomcat8"}}\tc\bin\catalina.bat" -ArgumentList "run" -Wait -NoNewWindow
