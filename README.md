@@ -1,11 +1,6 @@
 # National Parks - Java Tomcat Application - Windows Edition
 This is an example Java Tomcat application packaged by [Habitat](https://habitat.sh). This example app has existed for some time, and another example can be found [here](https://github.com/habitat-sh/national-parks). The differences with this example versus previous examples are the following:
 
-<<<<<<< HEAD
-# This is not the official demo. I am attempting to convert it to all windows native. 
-
-
-=======
 - `winhab/mongodb` - Previous examples had you build a version of mongodb that was already populated with data before the application 
 - `mongo.toml` - This repo includes a `mongo.toml` file for overriding the default configuration of mongodb
 - `core/haproxy` = This repo uses the core/haproxy package as a loadbalancer in front of National Parks `I have not yet tried this on Windows but, is actively being worked on.`
@@ -48,7 +43,7 @@ There is also an `index.html` file in the root of the repo that updates the map 
 5. `build`
 
 
-#Note I have not tested this on Windows yet. I am leaving it here while work is in progress. Continue at your own peril..
+# Note I have not tested this on Windows yet. I am leaving it here while work is in progress. Continue at your own peril..
 
 ## Terraform
 Included in the repo is terraform code for launching the application in AWS and Google Kubernetes Engine. Provision either AWS, GKE, or both, and then you can watch Habitat update across cloud deployments. 
@@ -287,4 +282,3 @@ ex: `     image: ericheiser/national-parks:latest`
 
 Then run: `docker-compose up`
 To clean up, run: `docker-compose down`
->>>>>>> dev
