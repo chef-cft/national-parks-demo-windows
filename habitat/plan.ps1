@@ -1,7 +1,7 @@
 $pkg_name="national-parks"
 $pkg_description="A sample JavaEE Web app deployed in the Tomcat8 package"
 $pkg_origin="winhab"
-$pkg_version="1.1.0"
+$pkg_version="1.2.0"
 $pkg_maintainer="Jeff Brimager <jbrimager@chef.io>"
 $pkg_license=@('Apache-2.0')
 $pkg_deps=@("winhab/tomcat8", "core/corretto8", "winhab/mongodb")
